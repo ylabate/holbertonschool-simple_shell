@@ -4,9 +4,10 @@
 int main(int ac, char **av)
 {
 	char *usr_entry = NULL;
+	char **path = NULL;
 	size_t length = 0;
 	bool TTY = true; /* true = interactive*/
-	int exec_exist, readed, last_result;
+	int readed, last_result;
 	char **token;
 
 	if (isatty(0) == 0)
@@ -25,10 +26,10 @@ int main(int ac, char **av)
 
 		split_arg(usr_entry, token);
 
-		exec_exist = search_path(usr_entry);
+		*path = search_path(usr_entry);
 
-		if (exec_exist != 0)
-			last_result = exec_subprocess(usr_entry, token, exec_exist);
+		if (path)
+			last_result = exec_subprocess(usr_entry, token, *path);
 		else
 			printf("%s", usr_entry);
 
