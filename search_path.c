@@ -1,3 +1,6 @@
 #include "main.h"
 
-char *search_path(char *buffer)
+int search_path(char *buffer)
+{
+
+}

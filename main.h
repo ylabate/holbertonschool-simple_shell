@@ -9,7 +9,7 @@
 #include <sys/wait.h>
 
 
-char *search_path(char *buffer);
+int search_path(char *buffer);
 int exec_subprocess(char *path);
 
 #endif /*__MAIN_H__*/
