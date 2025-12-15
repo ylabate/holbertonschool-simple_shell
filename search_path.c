@@ -9,12 +9,13 @@
  * 2 if the command is built-in
  */
 
-int search_path(char *buffer)
+char *search_path(char *buffer)
 {
-    char *path, *token;
-    char *full_path[PATH_MAX];
+    char *path, *token, **path_splited;
+    char *full_path;
     DIR *dir_ptr;
     struct dirent *entry;
+    int i = 0;
 
     if (buffer == NULL)
         return (0);
@@ -31,23 +32,16 @@ int search_path(char *buffer)
         dir_ptr = opendir(path_splited[i]);
         while ((entry = readdir(dir_ptr)) != NULL)
         {
-            printf("fichier = %s\n", entry->d_name);
-            if (av[1] == *entry->d_name)
-            
+            if (buffer == *entry->d_name)
+            {
+                closedir(dir_ptr);
+                return (path_splited[i]);
+            }
         }
         i++;
+        path_splited[i] = strtok(NULL, ":");
     }
     closedir(dir_ptr);
-    while (path != NULL)
-    {
-        
-        if (access(path, X_OK) == 0)
-            return (1);
-        else
-            return (0);
-    }
-    if (path != NULL)
-        return (1);
-    else
-        return (0);
+
+    return (NULL);
 }

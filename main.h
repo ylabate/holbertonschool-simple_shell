@@ -11,7 +11,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-int search_path(char *buffer);
+char *search_path(char *buffer);
 int exec_subprocess(char *path, char * const *arguments, int exec_exist);
 int split_arg(char *usr_entry, char **token);
 
