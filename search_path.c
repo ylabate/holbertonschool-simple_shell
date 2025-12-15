@@ -20,8 +20,8 @@ char *search_path(char *buffer)
     if (buffer == NULL)
         return (0);
 
-    if (strcmp(buffer, "exit") == 0)
-        return (2);
+    if (buffer == "exit")
+        return ("exit");
 
     path = getenv("PATH");
     if (!path)
