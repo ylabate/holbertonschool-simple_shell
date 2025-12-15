@@ -8,7 +8,8 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <string.h>
-#include <limits.h>
+#include <sys/types.h>
+#include <dirent.h>
 
 int search_path(char *buffer);
 int exec_subprocess(char *path, char * const *arguments, int exec_exist);
