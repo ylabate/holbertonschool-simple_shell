@@ -7,9 +7,10 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+#include <string.h>
 
 
 int search_path(char *buffer);
-int exec_subprocess(char *path);
+int exec_subprocess(char *path, char *arguments);
 
 #endif /*__MAIN_H__*/
