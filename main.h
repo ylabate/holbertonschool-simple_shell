@@ -16,6 +16,5 @@
 char *search_path(char *buffer);
 int exec_subprocess(char *path, char **arguments, char **envp);
 int split_arg(char *arg, char **token);
-void handle_sigint(int sig);
 
 #endif /*__MAIN_H__*/

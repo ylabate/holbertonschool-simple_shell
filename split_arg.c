@@ -17,7 +17,7 @@ int split_arg(char *arg, char **token)
 	if (token[0][j - 1] == '\n')
 		token[0][j - 1] = '\0';
 
-	while (token[i] = strtok(NULL, " "))
+	while ((token[i] = strtok(NULL, " ")))
 		i++;
 	for (j = 0 ; token[i - 1][j] != '\0' ; j++)
 	;

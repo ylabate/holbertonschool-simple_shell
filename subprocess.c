@@ -6,7 +6,7 @@ int exec_subprocess(char *path, char **arguments, char **envp)
 	int status;
 	int exit_code;
 
-	if (path == "exit")
+	if (!strcmp(path, "exit"))
 		exit(EXIT_SUCCESS);
 	else
 	{
@@ -26,6 +26,6 @@ int exec_subprocess(char *path, char **arguments, char **envp)
 			exit(1);
 		}
 	}
-	return (0);
+	return (exit_code);
 }
 

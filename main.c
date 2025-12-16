@@ -5,8 +5,8 @@ int main(int ac, char **av, char **envp)
 	char *usr_entry = NULL, *full_path = NULL, *path = NULL;
 	size_t length = 0;
 	int readed, last_result;
-	char **token, **arg;
-	(void)ac, av;
+	char **token;
+	(void)ac, (void)av, (void)last_result;
 
 	token = (char **)malloc(sizeof(char *) * 1024);
 	if (!token)
@@ -40,7 +40,6 @@ int main(int ac, char **av, char **envp)
 				sprintf(full_path, "%s/%s", path, token[0]);
 			else
 				full_path = path;
-			arg = &token[1];
 			last_result = exec_subprocess(full_path, token, envp);
 			if (path != full_path)
 				free(full_path);
