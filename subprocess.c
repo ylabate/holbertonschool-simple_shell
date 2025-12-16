@@ -1,10 +1,9 @@
 #include "main.h"
 
-int exec_subprocess(char *path, char **arguments)
+int exec_subprocess(char *path, char **arguments, char **envp)
 {
 	pid_t pid_proc;
 	int status;
-	extern char **environ;
 
 	if (path == "exit")
 		exit(EXIT_SUCCESS);
@@ -15,7 +14,7 @@ int exec_subprocess(char *path, char **arguments)
 			waitpid(pid_proc, &status, 0);
 		else
 		{
-			execve(path, arguments, environ);
+			execve(path, arguments, envp);
 		}
 	}
 	return (0);

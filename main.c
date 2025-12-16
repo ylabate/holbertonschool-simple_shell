@@ -1,7 +1,7 @@
 #include "main.h"
 #include <limits.h>
 
-int main(int ac, char **av)
+int main(int ac, char **av, char **envp)
 {
 	char *usr_entry = NULL;
 	char *path = NULL;
