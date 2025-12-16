@@ -7,7 +7,7 @@
  *
  * Return: Returns the exit code of the subprocess.
  */
-int exec_subprocess(char *path, char **arguments, char **envp)
+int exec_subprocess(char *path, char **token, char **envp)
 {
 	pid_t pid_proc;
 	int status;
@@ -28,7 +28,7 @@ int exec_subprocess(char *path, char **arguments, char **envp)
 		}
 		else
 		{
-			execve(path, arguments, envp);
+			execve(path, token, envp);
 			perror("execve");
 			exit(1);
 		}
@@ -36,3 +36,24 @@ int exec_subprocess(char *path, char **arguments, char **envp)
 	return (exit_code);
 }
 
+void start_subprocess(char *path, char **token, char **envp)
+{
+	char  *full_path = NULL;
+
+	if (strcmp(path, token[0]) != 0)
+	{
+		full_path = malloc(strlen(path) + 1 + strlen(token[0]) + 1);
+		if (!full_path)
+		{
+			free(path);
+			return;
+		}
+		sprintf(full_path, "%s/%s", path, token[0]);
+	}
+	else
+		full_path = NULL;
+	exec_subprocess((full_path ? full_path : path), token, envp);
+	if (full_path)
+		free(full_path);
+	free(path);
+}
