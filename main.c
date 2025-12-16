@@ -28,7 +28,9 @@ int main(int ac, char **av, char **envp)
 		if (length > 0 && usr_entry[length - 1] == '\n')
 			usr_entry[length - 1] = '\0';
 		split_arg(usr_entry, token);
+
 		path = search_path(token[0]);
+
 		if (path)
 		{
 			start_subprocess(path, token, envp);

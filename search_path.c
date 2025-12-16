@@ -8,21 +8,30 @@
 
 char *search_path(char *buffer)
 {
-	char *path_env, *path_copy, *token, *result;
+	char *path_env, *path_copy, *token, *result, *buf_copy;
 	DIR *dir_ptr;
 	struct dirent *entry;
 
-	if (buffer == NULL || buffer[0] == '\0')
+	buf_copy = strdup(buffer);
+	if (buf_copy == NULL || buf_copy[0] == '\0')
 		return (NULL);
 
-	if (buffer[0] == '/' || (buffer[0] == '.' && buffer[1] == '/'))
-		return (buffer);
+	if (buf_copy[0] == '/' || (buf_copy[0] == '.' && buf_copy[1] == '/'))
+		return (buf_copy);
+
 	path_env = getenv("PATH");
 	if (!path_env)
+	{
+		free(buf_copy);
 		return (NULL);
+	}
+
 	path_copy = strdup(path_env);
 	if (!path_copy)
+	{
+		free(buf_copy);
 		return (NULL);
+	}
 	token = strtok(path_copy, ":");
 	while (token)
 	{
@@ -40,12 +49,14 @@ char *search_path(char *buffer)
 				closedir(dir_ptr);
 				result = strdup(token);
 				free(path_copy);
+				free(buf_copy);
 				return (result);
 			}
 		}
 		closedir(dir_ptr);
 		token = strtok(NULL, ":");
 	}
+	free(buf_copy);
 	free(path_copy);
 	return (NULL);
 }
