@@ -14,8 +14,8 @@
 #include <signal.h>
 
 char *search_path(char *buffer);
-int exec_subprocess(char *path, char **arguments, char **envp);
+int exec_subprocess(char *path, char **token, char **envp);
 int split_arg(char *arg, char **token);
-int show_prompt(char **usr_entry, size_t *length);
+void start_subprocess(char *path, char **token, char **envp);
 
 #endif /*__MAIN_H__*/

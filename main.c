@@ -10,42 +10,34 @@
  */
 int main(int ac, char **av, char **envp)
 {
-	char *usr_entry = NULL, *full_path = NULL, *path = NULL;
+	char *usr_entry = NULL, *path = NULL;
 	size_t length = 0;
-	int last_result;
 	char **token;
-	(void)ac, (void)av, (void)last_result;
+	(void)ac, (void)av;
 
 	token = (char **)malloc(sizeof(char *) * 1024);
 	if (!token)
 		exit(EXIT_FAILURE);
 	while (true)
 	{
-		show_prompt(&usr_entry, &length);
+		if (isatty(0))
+			printf("$ ");
+		if (getline(&usr_entry, &length, stdin) == -1)
+			break;
+		length = strlen(usr_entry);
+		if (length > 0 && usr_entry[length - 1] == '\n')
+			usr_entry[length - 1] = '\0';
 		split_arg(usr_entry, token);
+		if (!token[0] || token[0][0] == '\0')
+			continue;
 		path = search_path(token[0]);
+
 		if (path)
 		{
-			full_path = malloc(strlen(path) + 1 + strlen(token[0]) + 1);
-			if (!full_path)
-			{
-				free(path);
-				continue;
-			}
-			if (strcmp(path, token[0]))
-				sprintf(full_path, "%s/%s", path, token[0]);
-			else
-				full_path = path;
-			last_result = exec_subprocess(full_path, token, envp);
-			if (path != full_path)
-				free(full_path);
-			free(path);
+			start_subprocess(path, token, envp);
 		}
 		else
 			printf("%s: command not found\n", token[0]);
-
-		if (!isatty(0))
-			break;
 	}
 	free(usr_entry);
 	free(token);
