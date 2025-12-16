@@ -1,5 +1,13 @@
 #include "main.h"
 
+/**
+ * main - Entry point for the simple shell program
+ * @ac: Argument count (unused)
+ * @av: Argument vector (unused)
+ * @envp: Environment variables array
+ *
+ * Return: EXIT_SUCCESS on normal termination
+ */
 int main(int ac, char **av, char **envp)
 {
 	char *usr_entry = NULL, *full_path = NULL, *path = NULL;
@@ -11,19 +19,9 @@ int main(int ac, char **av, char **envp)
 	token = (char **)malloc(sizeof(char *) * 1024);
 	if (!token)
 		exit(EXIT_FAILURE);
-
 	while (true)
 	{
-		if (isatty(0))
-			printf("$ ");
-
-		readed = getline(&usr_entry, &length, stdin);
-		if (readed == -1)
-		{
-			if (isatty(0))
-				printf("\n");
-			break;
-		}
+		show_prompt(&usr_entry, &length);
 		split_arg(usr_entry, token);
 
 		path = search_path(token[0]);

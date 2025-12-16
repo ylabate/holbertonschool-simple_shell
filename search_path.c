@@ -3,10 +3,7 @@
 /**
  * search_path - search for a command in the PATH environment variable
  * @buffer: command to search for
- * Return:
- * 0 if the command does not exist
- * 1 if the command exists
- * 2 if the command is built-in
+ * Return: path to the directory containing the command, or NULL if not found
  */
 
 char *search_path(char *buffer)
