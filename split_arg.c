@@ -14,10 +14,15 @@ int split_arg(char *arg, char **token)
 	token[0] = strtok(arg, " ");
 	for (j = 0 ; token[0][j] != '\0' ; j++)
 	;
-	token[0][j - 1] = '\0';
+	if (token[0][j - 1] == '\n')
+		token[0][j - 1] = '\0';
 
 	while (token[i] = strtok(NULL, " "))
 		i++;
+	for (j = 0 ; token[i - 1][j] != '\0' ; j++)
+	;
+	if (token[i - 1][j - 1] == '\n')
+		token[i - 1][j - 1] = '\0';
 
 	token[i] = NULL;
 	return (i);

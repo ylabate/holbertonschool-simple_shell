@@ -22,7 +22,6 @@ int exec_subprocess(char *path, char **arguments, char **envp)
 		else
 		{
 			execve(path, arguments, envp);
-			execve(path, arguments, environ);
 			perror("execve");
 			exit(1);
 		}
