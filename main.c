@@ -28,7 +28,8 @@ int main(int ac, char **av, char **envp)
 		if (length > 0 && usr_entry[length - 1] == '\n')
 			usr_entry[length - 1] = '\0';
 		split_arg(usr_entry, token);
-
+		if (!token[0] || token[0][0] == '\0')
+			continue;
 		path = search_path(token[0]);
 
 		if (path)
