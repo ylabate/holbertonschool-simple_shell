@@ -12,7 +12,7 @@ int main(int ac, char **av, char **envp)
 {
 	char *usr_entry = NULL, *full_path = NULL, *path = NULL;
 	size_t length = 0;
-	int readed, last_result;
+	int last_result;
 	char **token;
 	(void)ac, (void)av, (void)last_result;
 
