@@ -2,19 +2,11 @@
 
 int main(int ac, char **av, char **envp)
 {
-	char *usr_entry = NULL;
-	char *path = NULL;
-	char *full_path = NULL;
+	char *usr_entry = NULL, *full_path = NULL, *path = NULL;
 	size_t length = 0;
-	bool TTY = true; /* true = interactive*/
 	int readed, last_result;
-	char **token;
-	char **arg;
-	(void)ac;
-	(void)av;
-
-	if (isatty(0) == 0)
-		TTY = false;
+	char **token, **arg;
+	(void)ac, av;
 
 	token = (char **)malloc(sizeof(char *) * 1024);
 	if (!token)
@@ -22,13 +14,13 @@ int main(int ac, char **av, char **envp)
 
 	while (true)
 	{
-		if (TTY)
+		if (isatty(0))
 			printf("$ ");
 
 		readed = getline(&usr_entry, &length, stdin);
 		if (readed == -1)
 		{
-			if (TTY)
+			if (isatty(0))
 				printf("\n");
 			break;
 		}
@@ -57,7 +49,7 @@ int main(int ac, char **av, char **envp)
 		else
 			printf("%s: command not found\n", token[0]);
 
-		if (!TTY)
+		if (!isatty(0))
 			break;
 	}
 	free(usr_entry);
