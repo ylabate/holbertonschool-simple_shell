@@ -1,5 +1,12 @@
 #include "main.h"
-
+/**
+ * exec_subprocess - Executes a subprocess with the specified command.
+ * @path: The path to the command to execute in the subprocess.
+ * @arguments: Array of arguments to pass to the command.
+ * @envp: Array of environment variables.
+ *
+ * Return: Returns the exit code of the subprocess.
+ */
 int exec_subprocess(char *path, char **arguments, char **envp)
 {
 	pid_t pid_proc;

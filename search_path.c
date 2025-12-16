@@ -3,10 +3,7 @@
 /**
  * search_path - search for a command in the PATH environment variable
  * @buffer: command to search for
- * Return:
- * 0 if the command does not exist
- * 1 if the command exists
- * 2 if the command is built-in
+ * Return: path to the directory containing the command, or NULL if not found
  */
 
 char *search_path(char *buffer)
@@ -20,15 +17,12 @@ char *search_path(char *buffer)
 
 	if (buffer[0] == '/' || (buffer[0] == '.' && buffer[1] == '/'))
 		return (buffer);
-
 	path_env = getenv("PATH");
 	if (!path_env)
 		return (NULL);
-
 	path_copy = strdup(path_env);
 	if (!path_copy)
 		return (NULL);
-
 	token = strtok(path_copy, ":");
 	while (token)
 	{
