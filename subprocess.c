@@ -4,7 +4,7 @@ int exec_subprocess(char *path, char **arguments, char **envp)
 {
 	pid_t pid_proc;
 	int status;
-	extern char **environ;
+	int exit_code;
 
 	if (path == "exit")
 		exit(EXIT_SUCCESS);
@@ -21,7 +21,10 @@ int exec_subprocess(char *path, char **arguments, char **envp)
 		}
 		else
 		{
+			execve(path, arguments, envp);
 			execve(path, arguments, environ);
+			perror("execve");
+			exit(1);
 		}
 	}
 	return (0);
