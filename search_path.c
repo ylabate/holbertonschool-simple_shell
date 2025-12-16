@@ -56,7 +56,7 @@ char *search_path(char *buffer)
 		closedir(dir_ptr);
 		token = strtok(NULL, ":");
 	}
-	free(path_copy);
 	free(buf_copy);
+	free(path_copy);
 	return (NULL);
 }
