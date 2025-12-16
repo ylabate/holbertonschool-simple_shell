@@ -13,7 +13,7 @@
 #include <linux/limits.h>
 
 char *search_path(char *buffer);
-int exec_subprocess(char *usr_entry, char * const *arguments, char *path);
-int split_arg(char *usr_entry, char **token);
+int exec_subprocess(char *path, char **arguments);
+int split_arg(char *arg, char **token);
 
 #endif /*__MAIN_H__*/

@@ -9,9 +9,12 @@
  */
 int split_arg(char *arg, char **token)
 {
-	int i = 1;
+	int i = 1, j;
 
 	token[0] = strtok(arg, " ");
+	for (j = 0 ; token[0][j] != '\0' ; j++)
+	;
+	token[0][j - 1] = '\0';
 
 	while (token[i] = strtok(NULL, " "))
 		i++;

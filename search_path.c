@@ -11,37 +11,44 @@
 
 char *search_path(char *buffer)
 {
-    char *path, *token, **path_splited;
-    char *full_path;
-    DIR *dir_ptr;
-    struct dirent *entry;
-    int i = 0;
+	char *path_env, *path_copy, *token, *result;
+	DIR *dir_ptr;
+	struct dirent *entry;
 
-    if (buffer == NULL)
-        return (0);
+	if (buffer == NULL || buffer[0] == '\0')
+		return (NULL);
 
-    if (buffer == "exit")
-        return ("exit");
+	path_env = getenv("PATH");
+	if (!path_env)
+		return (NULL);
 
-    path = getenv("PATH");
-    if (!path)
-        return (0);
-    token = strtok(path, ":");
-    while (path_splited[i] = strtok(NULL, ":"))
-    {
-        dir_ptr = opendir(path_splited[i]);
-        while ((entry = readdir(dir_ptr)) != NULL)
-        {
-            if (buffer == *entry->d_name)
-            {
-                closedir(dir_ptr);
-                return (path_splited[i]);
-            }
-        }
-        i++;
-        path_splited[i] = strtok(NULL, ":");
-    }
-    closedir(dir_ptr);
+	path_copy = strdup(path_env);
+	if (!path_copy)
+		return (NULL);
 
-    return (NULL);
+	token = strtok(path_copy, ":");
+	while (token)
+	{
+		dir_ptr = opendir(token);
+		if (!dir_ptr)
+		{
+			token = strtok(NULL, ":");
+			continue;
+		}
+
+		while ((entry = readdir(dir_ptr)) != NULL)
+		{
+			if (strcmp(buffer, entry->d_name) == 0)
+			{
+				closedir(dir_ptr);
+				result = strdup(token);
+				free(path_copy);
+				return (result);
+			}
+		}
+		closedir(dir_ptr);
+		token = strtok(NULL, ":");
+	}
+	free(path_copy);
+	return (NULL);
 }

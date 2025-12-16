@@ -1,17 +1,18 @@
 #include "main.h"
 
-int exec_subprocess(char *usr_entry, char * const *arguments, char *path)
+int exec_subprocess(char *path, char **arguments)
 {
 	pid_t pid_proc;
+	int status;
 	extern char **environ;
 
 	if (path == "exit")
-		printf("aaa");
+		exit(EXIT_SUCCESS);
 	else
 	{
 		pid_proc = fork();
 		if (pid_proc != 0)
-			wait(&pid_proc);
+			waitpid(pid_proc, &status, 0);
 		else
 		{
 			execve(path, arguments, environ);
