@@ -26,8 +26,8 @@ int main(int ac, char **av, char **envp)
 		}
 		split_arg(usr_entry, token);
 
-		path = search_path(token[0]);
-	
+		path =search_path(token[0]);
+
 		if (path)
 		{
 			full_path = malloc(strlen(path) + 1 + strlen(token[0]) + 1);
