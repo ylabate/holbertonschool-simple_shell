@@ -18,6 +18,9 @@ char *search_path(char *buffer)
 	if (buffer == NULL || buffer[0] == '\0')
 		return (NULL);
 
+	if (buffer[0] == '.' && buffer[1] == '/')
+		return (buffer);
+
 	path_env = getenv("PATH");
 	if (!path_env)
 		return (NULL);

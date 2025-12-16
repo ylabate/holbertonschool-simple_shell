@@ -33,6 +33,7 @@ int main(int ac, char **av, char **envp)
 		split_arg(usr_entry, token);
 
 		path = search_path(token[0]);
+		printf("%s", path);
 	
 		if (path)
 		{
