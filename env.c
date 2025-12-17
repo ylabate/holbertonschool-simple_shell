@@ -9,8 +9,8 @@
  */
 char **env(char *var_name, char **envp)
 {
-	int i = 0, capacity = 10;
-	char **result = malloc(sizeof(char *) * capacity);
+	int i = 0;
+	char **result = malloc(sizeof(char *) * 50);
 	char *env_copy, *key;
 
 	while (envp[i])
@@ -33,11 +33,8 @@ char **env(char *var_name, char **envp)
 			result[i] = strdup(envp[i]);
 		}
 		i++;
-		if (i >= capacity)
-		{
-			capacity += 10;
-			result = realloc(result, sizeof(char *) * capacity);
-		}
+		if (i >= 50)
+			break;
 	}
 	result[i] = NULL;
 	return (result);
