@@ -40,14 +40,8 @@ int main(int ac, char **av, char **envp)
 		else
 			printf("%s: %d: %s: not found\n", av[0], count, token[0]);
 		count++;
-		if (!isatty(0))
-		{
-			free(usr_entry);
-			free(token);
-			return (exit_code);
-		}
 	}
 	free(usr_entry);
 	free(token);
-	exit(EXIT_SUCCESS);
+	exit(exit_code);
 }
