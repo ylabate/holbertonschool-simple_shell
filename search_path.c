@@ -18,7 +18,10 @@ char *search_path(char *buffer, char **PATH)
 		return (NULL);
 
 	if (buf_copy[0] == '/' || (buf_copy[0] == '.' && buf_copy[1] == '/'))
+	{
+		free_env(PATH);
 		return (buf_copy);
+	}
 	token = strtok(PATH[0], ":");
 	while (token)
 	{
@@ -35,6 +38,7 @@ char *search_path(char *buffer, char **PATH)
 				closedir(dir_ptr);
 				result = strdup(token);
 				free(buf_copy);
+				free_env(PATH);
 				return (result);
 			}
 		}

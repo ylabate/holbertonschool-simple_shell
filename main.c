@@ -13,6 +13,7 @@ int main(int ac, char **av, char **envp)
 	char *usr_entry = NULL, *path = NULL;
 	size_t length = 0;
 	char **token;
+	char **path_env;
 	(void)ac, (void)av;
 
 	token = (char **)malloc(sizeof(char *) * 1024);
@@ -30,11 +31,13 @@ int main(int ac, char **av, char **envp)
 		split_arg(usr_entry, token);
 		if (!token[0] || token[0][0] == '\0')
 			continue;
-		path = search_path(token[0], env("PATH", envp));
+		path_env = env("PATH", envp);
+		path = search_path(token[0], path_env);
 
 		if (path)
 		{
 			start_subprocess(path, token, envp);
+			;
 		}
 		else
 			printf("%s: command not found\n", token[0]);
