@@ -13,7 +13,6 @@ int exec_subprocess(char *path, char **token, char **envp)
 	int status;
 	int exit_code = 0;
 
-
 	{
 		pid_proc = fork();
 		if (pid_proc != 0)
@@ -47,7 +46,7 @@ void start_subprocess(char *path, char **token, char **envp)
 {
 	char *full_path = NULL;
 
-	if (strcmp(path, token[0]) != 0)
+	if (strcmp(path, token[0]) != 0 && path[0] != '/')
 	{
 		full_path = malloc(strlen(path) + 1 + strlen(token[0]) + 1);
 		if (!full_path)
