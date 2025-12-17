@@ -9,7 +9,7 @@
 
 char *search_path(char *buffer, char **PATH)
 {
-	char *token, *result, *buf_copy;
+	char *token = NULL, *result, *buf_copy;
 	DIR *dir_ptr;
 	struct dirent *entry;
 

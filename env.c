@@ -11,8 +11,10 @@ char **env(char *var_name, char **envp)
 {
 	int i = 0, j = 0;
 	char **result = malloc(sizeof(char *) * 50);
-	char *env_copy, *key;
+	char *env_copy, *key, *temp;
 
+	if (!result)
+		exit(EXIT_FAILURE);
 	while (j < 50)
 	{
 		result[j] = NULL;
@@ -26,11 +28,13 @@ char **env(char *var_name, char **envp)
 			key = strtok(env_copy, "=");
 			if (!strcmp(key, var_name))
 			{
-				result[0] = strdup(strtok(NULL, "="));
+				temp = strtok(NULL, "=");
+				result[0] = (temp ? strdup(temp) : NULL);
 				free(env_copy);
 				result[1] = NULL;
 				return (result);
 			}
+
 			free(env_copy);
 		}
 		else

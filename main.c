@@ -14,7 +14,7 @@ int main(int ac, char **av, char **envp)
 	size_t length = 0;
 	char **token;
 	char **path_env;
-	int count = 1, exit_code;
+	int count = 1, exit_code = 0;
 	(void)ac, (void)av;
 
 	signal(SIGINT, handle_sigint);
