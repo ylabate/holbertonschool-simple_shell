@@ -21,5 +21,6 @@ void free_env(char **env);
 char **env(char *var_name, char **envp);
 void handle_sigint(int sig);
 void prompt(void);
+int local_command(char **token);
 
 #endif /*__MAIN_H__*/
