@@ -14,7 +14,9 @@ char *search_path(char *buffer, char **PATH)
 	struct dirent *entry;
 
 	buf_copy = strdup(buffer);
-	if (!PATH || !buf_copy || buf_copy[0] == '\0')
+	if (!PATH)
+		return (NULL);
+	if (!buf_copy || buf_copy[0] == '\0')
 		return (NULL);
 	if (buf_copy[0] == '/' || buf_copy[0] == '.')
 	{
