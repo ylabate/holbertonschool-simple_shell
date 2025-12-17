@@ -13,6 +13,8 @@ char *search_path(char *buffer, char **PATH)
 	DIR *dir_ptr;
 	struct dirent *entry;
 
+	if (!PATH)
+		return (NULL);
 	buf_copy = strdup(buffer);
 	if (buf_copy == NULL || buf_copy[0] == '\0')
 		return (NULL);
