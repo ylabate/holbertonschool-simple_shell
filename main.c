@@ -34,18 +34,18 @@ int main(int ac, char **av, char **envp)
 		if (!token[0] || token[0][0] == '\0')
 			continue;
 		path_env = env("PATH", envp);
-
 		path = search_path(token[0], path_env);
 		if (path)
-		{
 			exit_code = start_subprocess(path, token, envp);
-			;
-		}
 		else
 			printf("%s: %d: %s: not found\n", av[0], count, token[0]);
 		count++;
 		if (!isatty(0))
+		{
+			free(usr_entry);
+			free(token);
 			return (exit_code);
+		}
 	}
 	free(usr_entry);
 	free(token);
