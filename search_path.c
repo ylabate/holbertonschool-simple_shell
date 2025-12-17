@@ -43,6 +43,5 @@ char *search_path(char *buffer, char **PATH)
 	}
 	free_env(PATH);
 	free(buf_copy);
-	free(PATH);
 	return (NULL);
 }
