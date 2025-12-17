@@ -46,7 +46,7 @@ void start_subprocess(char *path, char **token, char **envp)
 {
 	char *full_path = NULL;
 
-	if (strcmp(path, token[0]) != 0 && path[0] != '/')
+	if (strcmp(path, token[0]) != 0)
 	{
 		full_path = malloc(strlen(path) + 1 + strlen(token[0]) + 1);
 		if (!full_path)
