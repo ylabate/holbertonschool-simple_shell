@@ -3,12 +3,13 @@
 /**
  * search_path - search for a command in the PATH environment variable
  * @buffer: command to search for
+ * @PATH: array of PATH directories to search
  * Return: path to the directory containing the command, or NULL if not found
  */
 
-char *search_path(char *buffer)
+char *search_path(char *buffer, char **PATH)
 {
-	char *path_env, *path_copy, *token, *result, *buf_copy;
+	char *token, *result, *buf_copy;
 	DIR *dir_ptr;
 	struct dirent *entry;
 
@@ -18,21 +19,7 @@ char *search_path(char *buffer)
 
 	if (buf_copy[0] == '/' || (buf_copy[0] == '.' && buf_copy[1] == '/'))
 		return (buf_copy);
-
-	path_env = getenv("PATH");
-	if (!path_env)
-	{
-		free(buf_copy);
-		return (NULL);
-	}
-
-	path_copy = strdup(path_env);
-	if (!path_copy)
-	{
-		free(buf_copy);
-		return (NULL);
-	}
-	token = strtok(path_copy, ":");
+	token = strtok(PATH[0], ":");
 	while (token)
 	{
 		dir_ptr = opendir(token);
@@ -41,14 +28,12 @@ char *search_path(char *buffer)
 			token = strtok(NULL, ":");
 			continue;
 		}
-
 		while ((entry = readdir(dir_ptr)) != NULL)
 		{
 			if (strcmp(buffer, entry->d_name) == 0)
 			{
 				closedir(dir_ptr);
 				result = strdup(token);
-				free(path_copy);
 				free(buf_copy);
 				return (result);
 			}
@@ -56,7 +41,8 @@ char *search_path(char *buffer)
 		closedir(dir_ptr);
 		token = strtok(NULL, ":");
 	}
+	free_env(PATH);
 	free(buf_copy);
-	free(path_copy);
+	free(PATH);
 	return (NULL);
 }

@@ -2,7 +2,7 @@
 /**
  * exec_subprocess - Executes a subprocess with the specified command.
  * @path: The path to the command to execute in the subprocess.
- * @arguments: Array of arguments to pass to the command.
+ * @token: Array of arguments to pass to the command.
  * @envp: Array of environment variables.
  *
  * Return: Returns the exit code of the subprocess.
@@ -36,6 +36,14 @@ int exec_subprocess(char *path, char **token, char **envp)
 	return (exit_code);
 }
 
+/**
+ * start_subprocess - Starts a subprocess with the given command.
+ * @path: The path to the command or directory containing the command.
+ * @token: Array of command tokens (command and arguments).
+ * @envp: Array of environment variables.
+ *
+ * Return: Nothing (void).
+ */
 void start_subprocess(char *path, char **token, char **envp)
 {
 	char  *full_path = NULL;

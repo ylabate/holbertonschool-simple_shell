@@ -30,7 +30,7 @@ int main(int ac, char **av, char **envp)
 		split_arg(usr_entry, token);
 		if (!token[0] || token[0][0] == '\0')
 			continue;
-		path = search_path(token[0]);
+		path = search_path(token[0], env("PATH", envp));
 
 		if (path)
 		{
