@@ -11,11 +11,9 @@ int exec_subprocess(char *path, char **token, char **envp)
 {
 	pid_t pid_proc;
 	int status;
-	int exit_code;
+	int exit_code = 0;
 
-	if (!strcmp(path, "exit"))
-		exit(EXIT_SUCCESS);
-	else
+
 	{
 		pid_proc = fork();
 		if (pid_proc != 0)
@@ -28,6 +26,7 @@ int exec_subprocess(char *path, char **token, char **envp)
 		}
 		else
 		{
+			signal(SIGINT, SIG_DFL);
 			execve(path, token, envp);
 			perror("execve");
 			exit(1);
@@ -46,7 +45,7 @@ int exec_subprocess(char *path, char **token, char **envp)
  */
 void start_subprocess(char *path, char **token, char **envp)
 {
-	char  *full_path = NULL;
+	char *full_path = NULL;
 
 	if (strcmp(path, token[0]) != 0)
 	{

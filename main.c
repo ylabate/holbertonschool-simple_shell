@@ -17,13 +17,14 @@ int main(int ac, char **av, char **envp)
 	int count = 1;
 	(void)ac, (void)av;
 
+	signal(SIGINT, handle_sigint);
+
 	token = (char **)malloc(sizeof(char *) * 1024);
 	if (!token)
 		exit(EXIT_FAILURE);
 	while (true)
 	{
-		if (isatty(0))
-			printf("$ ");
+		prompt();
 		if (getline(&usr_entry, &length, stdin) == -1)
 			break;
 		length = strlen(usr_entry);

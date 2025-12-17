@@ -17,7 +17,7 @@ char *search_path(char *buffer, char **PATH)
 	if (buf_copy == NULL || buf_copy[0] == '\0')
 		return (NULL);
 
-	if (buf_copy[0] == '/' || (buf_copy[0] == '.' && buf_copy[1] == '/'))
+	if (buf_copy[0] == '/' || buf_copy[0] == '.')
 	{
 		free_env(PATH);
 		return (buf_copy);

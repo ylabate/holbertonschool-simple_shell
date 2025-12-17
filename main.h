@@ -19,5 +19,7 @@ int split_arg(char *arg, char **token);
 void start_subprocess(char *path, char **token, char **envp);
 void free_env(char **env);
 char **env(char *var_name, char **envp);
+void handle_sigint(int sig);
+void prompt(void);
 
 #endif /*__MAIN_H__*/
