@@ -16,7 +16,7 @@
 char *search_path(char *buffer, char **PATH);
 int exec_subprocess(char *path, char **token, char **envp);
 int split_arg(char *arg, char **token);
-void start_subprocess(char *path, char **token, char **envp);
+int start_subprocess(char *path, char **token, char **envp);
 void free_env(char **env);
 char **env(char *var_name, char **envp);
 void handle_sigint(int sig);

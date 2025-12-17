@@ -42,9 +42,10 @@ int exec_subprocess(char *path, char **token, char **envp)
  *
  * Return: Nothing (void).
  */
-void start_subprocess(char *path, char **token, char **envp)
+int start_subprocess(char *path, char **token, char **envp)
 {
 	char *full_path = NULL;
+	int exit_code;
 
 	if (strcmp(path, token[0]) != 0)
 	{
@@ -52,14 +53,15 @@ void start_subprocess(char *path, char **token, char **envp)
 		if (!full_path)
 		{
 			free(path);
-			return;
+			exit(EXIT_FAILURE);
 		}
 		sprintf(full_path, "%s/%s", path, token[0]);
 	}
 	else
 		full_path = NULL;
-	exec_subprocess((full_path ? full_path : path), token, envp);
+	exit_code = exec_subprocess((full_path ? full_path : path), token, envp);
 	if (full_path)
 		free(full_path);
 	free(path);
+	return (exit_code);
 }

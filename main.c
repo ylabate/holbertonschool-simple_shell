@@ -14,7 +14,7 @@ int main(int ac, char **av, char **envp)
 	size_t length = 0;
 	char **token;
 	char **path_env;
-	int count = 1;
+	int count = 1, exit_code;
 	(void)ac, (void)av;
 
 	signal(SIGINT, handle_sigint);
@@ -38,12 +38,14 @@ int main(int ac, char **av, char **envp)
 		path = search_path(token[0], path_env);
 		if (path)
 		{
-			start_subprocess(path, token, envp);
+			exit_code = start_subprocess(path, token, envp);
 			;
 		}
 		else
 			printf("%s: %d: %s: not found\n", av[0], count, token[0]);
 		count++;
+		if (!isatty(0))
+			return (exit_code);
 	}
 	free(usr_entry);
 	free(token);
