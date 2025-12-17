@@ -13,10 +13,10 @@ char **env(char *var_name, char **envp)
 	char **result = malloc(sizeof(char *) * 50);
 	char *env_copy, *key;
 
-	while (result[j])
+	while (j < 50)
 	{
-		result[i] = NULL;
-		i++;
+		result[j] = NULL;
+		j++;
 	}
 	while (envp[i])
 	{
