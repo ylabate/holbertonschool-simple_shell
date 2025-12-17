@@ -38,7 +38,10 @@ int main(int ac, char **av, char **envp)
 		if (path)
 			exit_code = start_subprocess(path, token, envp);
 		else
-			printf("%s: %d: %s: not found\n", av[0], count, token[0]);
+		{
+			fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, token[0]);
+			exit_code = 127;
+		}
 		count++;
 	}
 	free(usr_entry);
