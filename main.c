@@ -34,8 +34,8 @@ int main(int ac, char **av, char **envp)
 		if (!token[0] || token[0][0] == '\0')
 			continue;
 		path_env = env("PATH", envp);
-		path = search_path(token[0], path_env);
 
+		path = search_path(token[0], path_env);
 		if (path)
 		{
 			start_subprocess(path, token, envp);
