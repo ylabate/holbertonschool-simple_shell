@@ -42,9 +42,9 @@ char *search_path(char *buffer, char **PATH)
 					return (result);
 				}
 			}
+			closedir(dir_ptr);
+			token = strtok(NULL, ":");
 		}
-		closedir(dir_ptr);
-		token = strtok(NULL, ":");
 	}
 	free_env(PATH);
 	free(buf_copy);
