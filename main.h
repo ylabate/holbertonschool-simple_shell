@@ -43,5 +43,6 @@ void handle_sigint(int sig);
 int prompt(char **usr_entry, size_t *size_usr_entry);
 int built_in_command(char **token, char **envp);
 int shell_env(char **envp);
+int _atoi(char *s);
 
 #endif /*__MAIN_H__*/
