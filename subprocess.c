@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * exec_subprocess - Executes a subprocess with the specified command.
  * @path: The path to the command to execute in the subprocess.
@@ -17,16 +18,20 @@ int exec_subprocess(char *path, char **token, char **envp)
 		pid = fork();
 		if (pid != 0)
 		{
-			waitpid(pid, &exit_status, 0);
+			waitpid(pid, &exit_status, WUNTRACED);
 			if (WIFEXITED(exit_status))
 				exit_code = WEXITSTATUS(exit_status);
+			else if (WIFSIGNALED(exit_status))
+				exit_code = 128 + WTERMSIG(exit_status);
+			else if (WIFSTOPPED(exit_status))
+				exit_code = 128 + WSTOPSIG(exit_status);
 		}
 		else
 		{
 			signal(SIGINT, SIG_DFL);
 			execve(path, token, envp);
 			perror("execve");
-			exit(1);
+			exit(127);
 		}
 	}
 	return (exit_code);
@@ -49,9 +54,7 @@ int start_subprocess(char *path_exec, char **token, char **envp)
 	{
 		full_path = malloc(strlen(path_exec) + 1 + strlen(token[0]) + 1);
 		if (!full_path)
-		{
 			exit(EXIT_FAILURE);
-		}
 		sprintf(full_path, "%s/%s", path_exec, token[0]);
 	}
 	else

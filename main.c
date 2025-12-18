@@ -10,32 +10,18 @@
  */
 int main(int ac, char **av, char **envp)
 {
-	char *usr_entry = NULL, *path_exec = NULL;
-	size_t size_usr_entry = 0; /* la taille du malloc de l'user entry */
-	char **token = NULL;	   /* user entry une fois séparer */
-	char **path_env = NULL;	   /* le PATH de l'environement */
-	int count = 1, exit_code = 0, length = 0, end = 0;
+	char *usr_entry = NULL, *path_exec = NULL, **token = NULL, **path_env = NULL;
+	size_t size_usr_entry = 0;
+	int count = 1, exit_code = 0, end = 0;
 	(void)ac;
-
 	signal(SIGINT, handle_sigint);
-
+	signal(SIGTSTP, SIG_IGN);
 	while (end == 0)
 	{
-		prompt();
-		if (getline(&usr_entry, &size_usr_entry, stdin) == -1)
+		if (prompt(&usr_entry, &size_usr_entry) == -1)
 			break;
-
-		length = strlen(usr_entry);
-		if (length > 0 && usr_entry[length - 1] == '\n')
-			usr_entry[length - 1] = '\0';
-
 		token = split_arg(usr_entry);
-		if (!token[0])
-		{
-			free(token);
-			continue;
-		}
-		else
+		if (token[0])
 		{
 			path_env = env("PATH", envp);
 			path_exec = search_path(token[0], path_env);

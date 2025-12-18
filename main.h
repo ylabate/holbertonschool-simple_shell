@@ -1,17 +1,24 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-#include <stdbool.h>
+#define BOLD          "\033[1m"
+#define COLOR_GREEN  "\033[38;2;46;204;113m"
+#define COLOR_RED   "\033[38;2;255;0;0m"
+#define COLOR_RESET  "\033[0m"
+#define COLOR_GOLD	 "\033[38;5;220m"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
-#include <sys/wait.h>
 #include <string.h>
 #include <sys/types.h>
+#include <sys/wait.h>
+#include <signal.h>
 #include <dirent.h>
 #include <linux/limits.h>
-#include <signal.h>
+#include <sys/types.h>
+#include <pwd.h>
+#include <grp.h>
 
 /**
  * struct command - Structure for command functions
@@ -33,7 +40,7 @@ int start_subprocess(char *path_exec, char **token, char **envp);
 void free_env(char **env);
 char **env(char *var_name, char **envp);
 void handle_sigint(int sig);
-void prompt(void);
+int prompt(char **usr_entry, size_t *size_usr_entry);
 int built_in_command(char **token, char **envp);
 int shell_env(char **envp);
 
