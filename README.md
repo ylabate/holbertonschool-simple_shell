@@ -80,22 +80,10 @@ The program for our simple-shell project will be compiled using:
 ```
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ```
-- The code should use the Betty style. It will be checked using betty-style.pl and betty-doc.pl
+- The code should use the Betty style. It will be checked using [betty-style.pl](https://github.com/hs-hq/Betty/blob/master/betty-style.pl) and [betty-doc.pl](https://github.com/hs-hq/Betty/blob/master/betty-doc.pl)
 - No more than 5 function per file
 - All our header files should be include guarded
 - The prototypes of all our functions are included in our header file called "main.h".
-
-## **Instruction**
-
-### **Mandatory**
-
-- 0 - README, man, AUTHORS
-- 1 - Betty would be proud
-- 2 - Simple shell 0.1
-- 3 - Simple shell 0.2
-- 4 - Simple shell 0.3
-- 5 - Simple shell 0.4
-- 6 - Simple shell 1.0
 
 ## **Tech Stack**
 
@@ -124,17 +112,17 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 ### **Installation**
 
-1 - Clone this repository
+#### Clone this repository
 
 - Open your terminal
 - Navigate to the repository where you want to clone the repository
 - Run the following command:
-
+```
 git clone https://github.com/ylabate/holbertonschool-simple_shell.git
+cd holbertonschool-simple_shell
+```
 
-2 - Open the cloned repository
-
-3 - Compile the program
+#### Compile the program
 
 ```
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
@@ -145,7 +133,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 1 - Run the program with the main test file
 
 ```
-./a.out
+./hsh
 ```
 With the main test file included, you should to run the command.
 
