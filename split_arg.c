@@ -7,9 +7,13 @@
  *
  * Return: the number of tokens created
  */
-int split_arg(char *arg, char **token)
+char **split_arg(char *arg)
 {
+	char **token = malloc(sizeof(char *) * 1024);
 	int i = 0;
+
+	if (!token)
+		exit(EXIT_FAILURE);
 
 	token[i] = strtok(arg, " \t\n");
 	while (token[i])
@@ -17,5 +21,5 @@ int split_arg(char *arg, char **token)
 		i++;
 		token[i] = strtok(NULL, " \t\n");
 	}
-	return (i);
+	return (token);
 }
