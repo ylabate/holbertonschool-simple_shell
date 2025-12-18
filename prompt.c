@@ -13,8 +13,6 @@ int prompt(char **usr_entry, size_t *size)
 {
 	uid_t uid = getuid();
 	struct passwd *pw = getpwuid(uid);
-	int length;
-
 	char *cwd = getcwd(NULL, 0);
 
 	if (isatty(0))
@@ -23,9 +21,8 @@ int prompt(char **usr_entry, size_t *size)
 			COLOR_RED, pw->pw_name, COLOR_GOLD, COLOR_RESET);
 	}
 	fflush(stdout);
-	length = getline(usr_entry, size, stdin);
-
-	return (length);
+	free(cwd);
+	return (getline(usr_entry, size, stdin));
 }
 
 
