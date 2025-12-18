@@ -31,7 +31,10 @@ int main(int ac, char **av, char **envp)
 
 		token = split_arg(usr_entry);
 		if (!token[0])
+		{
+			free(token);
 			continue;
+		}
 		else
 		{
 			path_env = env("PATH", envp);
