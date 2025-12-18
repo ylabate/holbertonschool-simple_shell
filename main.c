@@ -12,11 +12,11 @@ int main(int ac, char **av, char **envp)
 {
 	char *usr_entry = NULL, *path_exec = NULL, **token = NULL, **path_env = NULL;
 	size_t size_usr_entry = 0;
-	int count = 1, exit_code = 0, end = 0;
+	int count = 0, exit_code = 0, end;
 	(void)ac;
 	signal(SIGINT, handle_sigint);
 	signal(SIGTSTP, SIG_IGN);
-	while (end == 0)
+	for (end = 0 ; end == 0 ; count++)
 	{
 		if (prompt(&usr_entry, &size_usr_entry) == -1)
 			break;
@@ -26,7 +26,11 @@ int main(int ac, char **av, char **envp)
 			path_env = env("PATH", envp);
 			path_exec = search_path(token[0], path_env);
 			if (strcmp(token[0], "exit") == 0)
+			{
+				if (token[1])
+					exit_code = atoi(token[1]);
 				end = 1;
+			}
 			else if (built_in_command(token, envp) != 256)
 				;
 			else if (path_exec)
@@ -43,7 +47,6 @@ int main(int ac, char **av, char **envp)
 		if (token)
 			free(token);
 		token = NULL;
-		count++;
 	}
 	free(usr_entry);
 	exit(exit_code);
