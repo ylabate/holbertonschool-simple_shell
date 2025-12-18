@@ -28,7 +28,7 @@ int main(int ac, char **av, char **envp)
 			if (strcmp(token[0], "exit") == 0)
 			{
 				if (token[1])
-					exit_code = atoi(token[1]);
+					exit_code = _atoi(token[1]);
 				end = 1;
 			}
 			else if (built_in_command(token, envp) != 256)
