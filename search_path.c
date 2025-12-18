@@ -13,7 +13,7 @@ char *search_path(char *buffer, char **path_env)
 	DIR *dir_ptr;
 	struct dirent *file_ptr;
 
-	if (!path_env)
+	if (!path_env || !path_env[0])
 		return (NULL);
 
 	if (!buffer || buffer[0] == '\0')
