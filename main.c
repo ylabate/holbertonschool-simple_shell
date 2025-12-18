@@ -47,10 +47,12 @@ int main(int ac, char **av, char **envp)
 				fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, token[0]);
 				exit_code = 127;
 			}
+			if (path_env)
+				free_env(path_env);
+			path_env = NULL;
 		}
 		if (token)
 			free(token);
-		free_env(path_env);
 		token = NULL;
 		count++;
 	}

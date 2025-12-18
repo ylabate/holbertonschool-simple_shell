@@ -15,7 +15,7 @@ char **split_arg(char *arg)
 	if (!token)
 		exit(EXIT_FAILURE);
 
-	token[i] = strtok(arg, " \t\n");
+	token[i] = strtok(arg, " \t");
 	while (token[i])
 	{
 		i++;
