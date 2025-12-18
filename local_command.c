@@ -5,20 +5,21 @@
  * @token: array of command and its arguments
  * Return: 1 if local command, 0 otherwise
  */
-int local_command(char **token)
+int local_command(char **token, char **envp)
 {
-	if (token && token[0] != NULL)
+	int i = 0;
+	function_t func[] = {
+		{"exit", shell_exit, NULL},
+		{"env", shell_env, NULL},
+		{NULL, NULL, NULL}
+	};
+
+	func[1].arguments = envp;
+	while (func[i].name)
 	{
-		if (strcmp(token[0], "cd") == 0)
-			return (1);
-
-		if (strcmp(token[0], "exit") == 0)
-			return (1);
-
-		if (strcmp(token[0], "env") == 0)
-			return (1);
-		return (0);
+		if (strcmp(token[0], func[i].name) == 0)
+			return (func[i].function(func[i].arguments));
+		i++;
 	}
-	else
-		return (0);
+	return (256);
 }

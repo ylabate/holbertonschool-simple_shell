@@ -35,7 +35,6 @@ char **env(char *var_name, char **envp)
 				result[1] = NULL;
 				return (result);
 			}
-
 			free(env_copy);
 		}
 		else

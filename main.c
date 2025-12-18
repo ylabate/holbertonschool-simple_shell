@@ -32,12 +32,12 @@ int main(int ac, char **av, char **envp)
 		token = split_arg(usr_entry);
 		if (!token[0])
 			continue;
-
+		if (local_command(token, envp) != 256)
+			continue;
 		path_env = env("PATH", envp);
 		path_exec = search_path(token[0], path_env);
 		if (path_exec)
 			exit_code = start_subprocess(path_exec, token, envp);
-
 		else
 		{
 			fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, token[0]);
