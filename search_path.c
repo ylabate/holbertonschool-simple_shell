@@ -7,13 +7,13 @@
  * Return: path to the directory containing the command, or NULL if not found
  */
 
-char *search_path(char *buffer, char **PATH)
+char *search_path(char *buffer, char **path_env)
 {
 	char *token = NULL;
 	DIR *dir_ptr;
 	struct dirent *file_ptr;
 
-	if (!PATH)
+	if (!path_env)
 		return (NULL);
 
 	if (!buffer || buffer[0] == '\0')
@@ -21,11 +21,10 @@ char *search_path(char *buffer, char **PATH)
 
 	if (buffer[0] == '/' || buffer[0] == '.')
 	{
-		free_env(PATH);
 		return (buffer);
 	}
 
-	token = strtok(PATH[0], ":");
+	token = strtok(path_env[0], ":");
 	while (token)
 	{
 		dir_ptr = opendir(token);
@@ -44,6 +43,5 @@ char *search_path(char *buffer, char **PATH)
 		else
 			token = strtok(NULL, ":");
 	}
-	free_env(PATH);
 	return (NULL);
 }

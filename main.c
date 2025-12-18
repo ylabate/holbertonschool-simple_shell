@@ -12,14 +12,14 @@ int main(int ac, char **av, char **envp)
 {
 	char *usr_entry = NULL, *path_exec = NULL;
 	size_t size_usr_entry = 0; /* la taille du malloc de l'user entry */
-	char **token = NULL; /* user entry une fois séparer */
-	char **path_env; /* le PATH de l'environement */
-	int count = 1, exit_code = 0, length = 0;
+	char **token = NULL;	   /* user entry une fois séparer */
+	char **path_env = NULL;	   /* le PATH de l'environement */
+	int count = 1, exit_code = 0, length = 0, end = 0;
 	(void)ac;
 
 	signal(SIGINT, handle_sigint);
 
-	while (true)
+	while (end == 0)
 	{
 		prompt();
 		if (getline(&usr_entry, &size_usr_entry, stdin) == -1)
@@ -31,22 +31,29 @@ int main(int ac, char **av, char **envp)
 
 		token = split_arg(usr_entry);
 		if (!token[0])
-			continue;
-		if (local_command(token, envp) != 256)
-			continue;
-		path_env = env("PATH", envp);
-		path_exec = search_path(token[0], path_env);
-		if (path_exec)
-			exit_code = start_subprocess(path_exec, token, envp);
+			end = 1;
 		else
 		{
-			fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, token[0]);
-			exit_code = 127;
+			path_env = env("PATH", envp);
+			path_exec = search_path(token[0], path_env);
+			if (strcmp(token[0], "exit") == 0)
+				end = 1;
+			else if (built_in_command(token, envp) != 256)
+				;
+			else if (path_exec)
+				exit_code = start_subprocess(path_exec, token, envp);
+			else
+			{
+				fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, token[0]);
+				exit_code = 127;
+			}
 		}
+		if (token)
+			free(token);
+		free_env(path_env);
+		token = NULL;
 		count++;
 	}
-	free_env(path_env);
 	free(usr_entry);
-	free(token);
 	exit(exit_code);
 }

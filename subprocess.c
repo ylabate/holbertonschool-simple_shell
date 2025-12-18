@@ -43,7 +43,7 @@ int exec_subprocess(char *path, char **token, char **envp)
 int start_subprocess(char *path_exec, char **token, char **envp)
 {
 	char *full_path = NULL;
-	int exit_code;
+	int exit_code = 0;
 
 	if (strcmp(path_exec, token[0]) != 0)
 	{

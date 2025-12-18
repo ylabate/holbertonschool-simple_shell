@@ -12,6 +12,7 @@ int shell_env(char **envp)
 		i++;
 	}
 	fflush(stdout);
+	free_env(exit_env);
 
 	return (0);
 }

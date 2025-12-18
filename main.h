@@ -34,8 +34,7 @@ void free_env(char **env);
 char **env(char *var_name, char **envp);
 void handle_sigint(int sig);
 void prompt(void);
-int local_command(char **token, char **envp);
-int shell_exit(char **nothing);
+int built_in_command(char **token, char **envp);
 int shell_env(char **envp);
 
 #endif /*__MAIN_H__*/
