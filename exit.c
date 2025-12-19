@@ -28,7 +28,8 @@ int __exit(int *exit_code, int *end, char **token, int count, char **av)
 	{
 		if (ext_code < 0)
 		{
-			fprintf(stderr, "%s: %d: exit: Illegal number: %s\n", av[0], count, token[1]);
+			fprintf(stderr, "%s: %d: exit: Illegal number:%s\n", av[0],
+				count, token[1]);
 			*exit_code = 2;
 		}
 		else
