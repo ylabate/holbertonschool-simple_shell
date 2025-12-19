@@ -12,7 +12,7 @@ int main(int ac, char **av, char **envp)
 {
 	char *usr_entry = NULL, *path_exec = NULL, **token = NULL, **path_env = NULL;
 	size_t size_usr_entry = 0;
-	int count = 0, exit_code = 0, end;
+	int count = 1, exit_code = 0, end;
 	(void)ac;
 	signal(SIGINT, handle_sigint);
 	signal(SIGTSTP, SIG_IGN);
@@ -25,14 +25,10 @@ int main(int ac, char **av, char **envp)
 		{
 			path_env = env("PATH", envp);
 			path_exec = search_path(token[0], path_env);
-			if (strcmp(token[0], "exit") == 0)
-			{
-				if (token[1])
-					exit_code = _atoi(token[1]);
-				end = 1;
-			}
+			if (__exit(&exit_code, &end, token, count))
+			;
 			else if (built_in_command(token, envp) != 256)
-				;
+			;
 			else if (path_exec)
 				exit_code = start_subprocess(path_exec, token, envp);
 			else
@@ -40,13 +36,9 @@ int main(int ac, char **av, char **envp)
 				fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, token[0]);
 				exit_code = 127;
 			}
-			if (path_env)
-				free_env(path_env);
-			path_env = NULL;
+			_free(path_env, "env");
 		}
-		if (token)
-			free(token);
-		token = NULL;
+		_free(token, NULL);
 	}
 	free(usr_entry);
 	exit(exit_code);

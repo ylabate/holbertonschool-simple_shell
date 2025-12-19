@@ -44,5 +44,7 @@ int prompt(char **usr_entry, size_t *size_usr_entry);
 int shell_env(char **envp);
 int _atoi(char *s);
 int built_in_command(char **token, char **envp);
+void _free(char **mallocd, char *env);
+int __exit(int *exit_code, int *end, char **token, int count);
 
 #endif /*__MAIN_H__*/
