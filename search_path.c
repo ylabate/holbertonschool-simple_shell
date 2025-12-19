@@ -12,15 +12,10 @@ char *search_path(char *buffer, char **path_env)
 	DIR *dir_ptr;
 	struct dirent *file_ptr;
 
-	if (!buffer || buffer[0] == '\0')
+	if (!buffer || buffer[0] == '\0' || !path_env || !path_env[0])
 		return (NULL);
-
 	if (buffer[0] == '/' || buffer[0] == '.')
-	{
 		return (buffer);
-	}
-	if (!path_env || !path_env[0])
-		return (NULL);
 
 	token = strtok(path_env[0], ":");
 	while (token)
@@ -34,7 +29,6 @@ char *search_path(char *buffer, char **path_env)
 					closedir(dir_ptr);
 					return (token);
 				}
-
 			closedir(dir_ptr);
 			token = strtok(NULL, ":");
 		}
