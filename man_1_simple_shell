@@ -2,25 +2,36 @@
 .SH NAME
 simple_shell \- a simple UNIX command line interpreter
 .SH SYNOPSIS
-.B ./simple_shell
+.B ./hsh
 .SH DESCRIPTION
-simple_shell reads commands from the user, executes built-in commands,
-or launches external programs in subprocesses.
+hsh reads commands from the user in a loop, executes built-in commands like "env", "ls", "exit", 
+or launches external programs in subprocesses. It also handles environment variables, basic signal management
+(e.g., CTRL+C), and searches the PATH for external commands.
+The shell continues to prompt for command until the user exits.
 .SH COMMANDS
 .TP
 env
-Prints the current environment.
+Prints the current environment variables.
 .TP
 exit
 Exits the shell.
 .TP
+ls
+Lists the contents of the current directory.
+.TP
 cd
-Changes the current directory.
+Changes the current working directory.
 .SH EXAMPLES
-$ ./simple_shell
-simple_shell$ env
-PATH=/usr/bin:...
-simple_shell$ cd /home
-simple_shell$ exit
+$ ./hsh
+hsh$ env
+PATH=/bin/ls
+hsh$ cd /holbertonschool-simple_shell
+hsh$ ls
+README.md main.c main.h built_in_command.c env.c prompt.c search_path.c shell_env.c signal.c split_arg.c subprocess.c
+hsh$ exit
 .SH AUTHOR
-Ton Nom
+Developed by Ylan Labare Bekate <12196@holbertonstudents.com>
+.SH AUTHOR
+Developed by Théo Caulet <caulet.theo@gmail.com>
+.SH SEE ALSO
+.B man(1), sh(1), bash(1)
