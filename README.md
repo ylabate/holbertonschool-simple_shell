@@ -97,6 +97,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 | **File** | **Description** |
 |------------|-----------------------------------------------------------------------------|
 | README.md | Project documentation: Explain the purpose, installation steps, usage, project structure and the technologies used |
+| man_1_simple_shell | Shell manual describing its usage and commands |
 | main.c | Contains the main function of the program and starts its execution |
 | main.h | Program header file. It contains the prototypes of the functions and the structures used |
 | prompt.c | Contains the function that displays the prompt and reads the user's command |
