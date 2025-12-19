@@ -3,7 +3,6 @@
 /**
  * split_arg - splits a string into tokens based on spaces
  * @usr_entry: the string to be split
- * @token: array to store the resulting tokens
  *
  * Return: the number of tokens created
  */

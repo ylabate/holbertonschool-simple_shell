@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * shell_env - prints the current environment variables
+ * @envp: environment variables
+ *
+ * Return: 0 on success
+ */
+
 int shell_env(char **envp)
 {
 	char **exit_env;
