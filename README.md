@@ -118,7 +118,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 ### **Installation**
 
-1 - Clone this repository
+#### Clone this repository
 
 - Open your terminal
 - Navigate to the repository where you want to clone the repository
@@ -128,18 +128,14 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 git clone https://github.com/ylabate/holbertonschool-simple_shell.git
 ```
 
-2 - Open the cloned repository
-
-3 - Compile the program
+#### Open the cloned repository
+```
+cd holbertonschool-simple_shell
+```
+#### Compile the program
 
 ```
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
-```
-
-Then type this command to be in the correct directory
-
-```
-cd holbertonschool-simple_shell
 ```
 
 ### **Usage**
@@ -166,6 +162,7 @@ When you run the command `exit`, the program terminates:
 ```
 hsh$ exit 0
 $
+```
 
 ## **Thanks**
 
@@ -175,22 +172,9 @@ We thank Holberton school for this simple-shell project and for allowing us to w
 
 ### **Ylan Labare Bekate**
 
-```
-
-Github: https://github.com/ylabate
-
-```
+[Github](https://github.com/ylabate)
 
 ### **Théo Caulet**
 
-```
+[Github](https://github.com/theocaulet)
 
-Github: https://github.com/theocaulet
-
-```
-
-
-
-
-
-```
