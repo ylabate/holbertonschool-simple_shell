@@ -1,9 +1,11 @@
 #include "main.h"
 
 /**
- * local_command - checks if the command is a local command
+ * built_in_command - checks if the command is a local command
  * @token: array of command and its arguments
- * Return: 1 if local command, 0 otherwise
+ * @envp: environment variables
+ *
+ * Return: 0 if command is a local command, 256 otherwise
  */
 int built_in_command(char **token, char **envp)
 {
