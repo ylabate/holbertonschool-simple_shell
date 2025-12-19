@@ -97,37 +97,42 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 | **File** | **Description** |
 |------------|-----------------------------------------------------------------------------|
 | README.md | Project documentation: Explain the purpose, installation steps, usage, project structure and the technologies used |
-| main.c ||
-| main.h ||
-| prompt.c ||
-| build_in_command.c ||
-| env.c ||
-| search_path.c ||
-| shell_env.c ||
-| signal.c ||
-| split_arg.c ||
-| subprocess.c ||
+| main.c | Contains the main function of the program and starts its execution |
+| main.h | Program header file. It contains the prototypes of the functions and the structures used |
+| prompt.c | Contains the function that displays the prompt and reads the user's command |
+| built_in_command.c | Contains the function that checks and executes the shell's built-in commands |
+| env.c | Contains the function that displays the environment variables |
+| search_path.c | Contains the function that searches for the location of a command in the PATH |
+| shell_env.c | Contains the function that displays the shell environment |
+| signal.c | Contains the functions that handle the program's signals |
+| split_arg.c | Contains the function that splits a command into arguments |
+| subprocess.c | Contains the function that executes shell commands in subprocesses |
 
 ## **Installation and Usage**
 
 ### **Installation**
 
-#### Clone this repository
+1 - Clone this repository
 
 - Open your terminal
 - Navigate to the repository where you want to clone the repository
 - Run the following command:
 ```
 git clone https://github.com/ylabate/holbertonschool-simple_shell.git
-cd holbertonschool-simple_shell
 ```
 
-#### Compile the program
+2 - Open the cloned repository
+
+3 - Compile the program
 
 ```
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ```
+Then type this command to be in the correct directory
 
+```
+cd holbertonschool-simple_shell
+```
 ### **Usage**
 
 1 - Run the program with the main test file
