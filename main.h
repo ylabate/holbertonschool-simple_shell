@@ -35,7 +35,7 @@ typedef struct command
 
 char *search_path(char *buffer, char **PATH);
 int exec_subprocess(char *path, char **token, char **envp);
-char **split_arg(char *arg);
+char **split_arg(char *arg, int ac);
 int start_subprocess(char *path_exec, char **token, char **envp);
 void free_env(char **env);
 char **env(char *var_name, char **envp);

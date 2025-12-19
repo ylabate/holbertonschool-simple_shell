@@ -13,14 +13,16 @@ int main(int ac, char **av, char **envp)
 	char *usr_entry = NULL, *path_exec = NULL, **token = NULL, **path_env = NULL;
 	size_t size_usr_entry = 0;
 	int count = 1, exit_code = 0, end;
-	(void)ac;
+
 	signal(SIGINT, handle_sigint);
 	signal(SIGTSTP, SIG_IGN);
+
 	for (end = 0 ; end == 0 ; count++)
 	{
 		if (prompt(&usr_entry, &size_usr_entry) == -1)
 			break;
-		token = split_arg(usr_entry);
+
+		token = split_arg(usr_entry, ac);
 		if (token[0])
 		{
 			path_env = env("PATH", envp);

@@ -3,10 +3,11 @@
 /**
  * split_arg - splits a string into tokens based on spaces
  * @usr_entry: the string to be split
+ * @ac: the number of arguments to parse
  *
  * Return: the number of tokens created
  */
-char **split_arg(char *usr_entry)
+char **split_arg(char *usr_entry, int ac)
 {
 	char **token = malloc(sizeof(char *) * 1024);
 	int i = 0, length = 0;
@@ -18,7 +19,7 @@ char **split_arg(char *usr_entry)
 		exit(EXIT_FAILURE);
 
 	token[i] = strtok(usr_entry, " \t");
-	while (token[i])
+	while (i < ac)
 	{
 		i++;
 		token[i] = strtok(NULL, " \t");
