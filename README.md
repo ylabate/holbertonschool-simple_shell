@@ -107,7 +107,9 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 | shell_env.c | Contains the function that displays the shell environment |
 | signal.c | Contains the functions that handle the program's signals |
 | split_arg.c | Contains the function that splits a command into arguments |
-| subprocess.c | Contains the function that executes shell commands in subprocesses |
+| exec_subprocess.c | Contains the function that executes shell commands in subprocesses |
+| start_subprocess | Handles execution of commands in subprocesses |
+| exit.c | Contains the function that exits the shell |
 
 ## **Installation and Usage**
 
