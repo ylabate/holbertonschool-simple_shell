@@ -4,34 +4,35 @@ simple_shell \- a simple UNIX command line interpreter
 .SH SYNOPSIS
 .B ./hsh
 .SH DESCRIPTION
-hsh reads commands from the user in a loop, executes built-in commands like "env", "ls", "exit", 
+hsh reads commands from the user in a loop, executes built-in commands like "env" and "exit",
 or launches external programs in subprocesses. It also handles environment variables, basic signal management
 (e.g., CTRL+C), and searches the PATH for external commands.
-The shell continues to prompt for command until the user exits.
-.SH COMMANDS
+The shell continues to prompt for commands until the user exits.
+.SH BUILT-IN COMMANDS
 .TP
 env
 Prints the current environment variables.
 .TP
-exit
-Exits the shell.
-.TP
-ls
-Lists the contents of the current directory.
-.TP
-cd
-Changes the current working directory.
+exit [STATUS]
+Exits the shell with an optional exit status (0-255). If STATUS is omitted, the exit code from the last command is used.
+.SH EXTERNAL COMMANDS
+Any command not recognized as a built-in is searched in the PATH and executed in a subprocess.
 .SH EXAMPLES
 $ ./hsh
 hsh$ env
-PATH=/bin/ls
-hsh$ cd /holbertonschool-simple_shell
-hsh$ ls
-README.md main.c main.h built_in_command.c env.c prompt.c search_path.c shell_env.c signal.c split_arg.c subprocess.c
-hsh$ exit
-.SH AUTHOR
+.br
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+.br
+HOME=/root
+.br
+USER=root
+.br
+hsh$ exit 0
+$ echo $?
+0
+.SH AUTHORS
 Developed by Ylan Labare Bekate <12196@holbertonstudents.com>
-.SH AUTHOR
+.br
 Developed by Théo Caulet <caulet.theo@gmail.com>
 .SH SEE ALSO
 .B man(1), sh(1), bash(1)
