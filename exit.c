@@ -24,7 +24,8 @@ int __exit(int *exit_code, int *end, char **token, int count, char **av)
 			*exit_code = 2;
 		}
 		else
-			*exit_code = ext_code;
+			if (*exit_code == 0)
+				*exit_code = ext_code;
 		*end = 1;
 		return (1);
 	}
