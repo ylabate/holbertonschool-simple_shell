@@ -9,7 +9,7 @@
  *
  * Return: 1 if exit command was processed, 0 otherwise
  */
-int __exit(int *exit_code, int *end, char **token, int count)
+int __exit(int *exit_code, int *end, char **token, int count, char **av)
 {
 	int ext_code = 0;
 
@@ -20,7 +20,7 @@ int __exit(int *exit_code, int *end, char **token, int count)
 	{
 		if (ext_code < 0)
 		{
-			fprintf(stderr, "%s: %d: exit: Illegal number: %d\n", token[0], count, ext_code);
+			fprintf(stderr, "%s: %d: exit: Illegal number: %d\n", av[0], count, ext_code);
 			*exit_code = 2;
 		}
 		else
