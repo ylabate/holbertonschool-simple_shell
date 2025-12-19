@@ -41,8 +41,8 @@ void free_env(char **env);
 char **env(char *var_name, char **envp);
 void handle_sigint(int sig);
 int prompt(char **usr_entry, size_t *size_usr_entry);
-int built_in_command(char **token, char **envp);
 int shell_env(char **envp);
 int _atoi(char *s);
+int built_in_command(char **token, char **envp);
 
 #endif /*__MAIN_H__*/
