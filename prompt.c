@@ -11,7 +11,6 @@
  */
 int prompt(char **usr_entry, size_t *size)
 {
-	/**
 	uid_t uid = getuid();
 	struct passwd *pw = getpwuid(uid);
 	char *cwd = getcwd(NULL, 0);
@@ -23,7 +22,6 @@ int prompt(char **usr_entry, size_t *size)
 	}
 	fflush(stdout);
 	free(cwd);
-	*/
 
 	return (getline(usr_entry, size, stdin));
 }
