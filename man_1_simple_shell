@@ -1,0 +1,26 @@
+.TH SIMPLE_SHELL 1 "19 Dec 2025" "v1.0" "Simple Shell Manual"
+.SH NAME
+simple_shell \- a simple UNIX command line interpreter
+.SH SYNOPSIS
+.B ./simple_shell
+.SH DESCRIPTION
+simple_shell reads commands from the user, executes built-in commands,
+or launches external programs in subprocesses.
+.SH COMMANDS
+.TP
+env
+Prints the current environment.
+.TP
+exit
+Exits the shell.
+.TP
+cd
+Changes the current directory.
+.SH EXAMPLES
+$ ./simple_shell
+simple_shell$ env
+PATH=/usr/bin:...
+simple_shell$ cd /home
+simple_shell$ exit
+.SH AUTHOR
+Ton Nom
