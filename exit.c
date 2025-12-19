@@ -5,6 +5,7 @@
  * @exit_code: pointer to the exit code value
  * @end: pointer to flag indicating shell should end
  * @token: array of command tokens
+ * @count: command execution count for error messages
  *
  * Return: 1 if exit command was processed, 0 otherwise
  */
