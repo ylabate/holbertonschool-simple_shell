@@ -19,10 +19,8 @@ char **split_arg(char *usr_entry, int ac)
 		exit(EXIT_FAILURE);
 
 	token[i] = strtok(usr_entry, " \t");
-	while (i < ac)
-	{
-		i++;
+	while (i++ < ac)
 		token[i] = strtok(NULL, " \t");
-	}
+	token[i] = NULL;
 	return (token);
 }
