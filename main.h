@@ -15,10 +15,7 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <dirent.h>
-#include <linux/limits.h>
-#include <sys/types.h>
 #include <pwd.h>
-#include <grp.h>
 
 /**
  * struct command - Structure for command functions
