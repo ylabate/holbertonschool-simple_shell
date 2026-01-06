@@ -38,9 +38,9 @@ int main(int ac, char **av, char **envp)
 				fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, token[0]);
 				exit_code = 127;
 			}
-			_free(path_env, "env");
+			free_env(path_env);
 		}
-		_free(token, NULL);
+		free(token);
 	}
 	free(usr_entry);
 	exit(exit_code);
