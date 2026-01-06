@@ -21,6 +21,7 @@ int prompt(char **usr_entry, size_t *size, char **envp)
 			COLOR_RED, user[0], COLOR_GOLD, COLOR_RESET);
 	}
 	fflush(stdout);
+	free_env(user);
 	free(cwd);
 
 	return (getline(usr_entry, size, stdin));
