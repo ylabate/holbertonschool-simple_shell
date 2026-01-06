@@ -19,7 +19,7 @@ int main(int ac, char **av, char **envp)
 
 	for (end = 0 ; end == 0 ; count++)
 	{
-		if (prompt(&usr_entry, &size_usr_entry) == -1)
+		if (prompt(&usr_entry, &size_usr_entry, envp) == -1)
 			break;
 
 		token = split_arg(usr_entry, ac);
