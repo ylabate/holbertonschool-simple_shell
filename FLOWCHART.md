@@ -1,7 +1,6 @@
 ```mermaid
-flowchart LR
-    Start(["Start"]) --> def1["def1"]
-    def1 --> def2["SIGINT = handle_sigint
+flowchart TB
+    Start(["Start"]) --> def2["SIGINT = handle_sigint
     SIGTSTP = SIG_IGN"]
     def2 --> main_loop{"end == 0"}
     main_loop -- true --> prompt[/"print prompt with cwd and user"/]
