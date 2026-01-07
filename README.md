@@ -172,9 +172,9 @@ We thank Holberton school for this simple-shell project and for allowing us to w
 
 ### **Ylan Labare Bekate**
 
-[Github](https://github.com/ylabate)
+- Github: https://github.com/ylabate
 
 ### **Théo Caulet**
 
-[Github](https://github.com/theocaulet)
+- Github: https://github.com/theocaulet
 
