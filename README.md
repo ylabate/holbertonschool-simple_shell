@@ -110,7 +110,6 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 | exec_subprocess.c  | Contains the function that executes subprocess with execve                                                         |
 | signal.c           | Contains the functions that handle signals (SIGINT, SIGTSTP)                                                       |
 | \_atoi.c           | Contains a custom implementation of atoi function                                                                  |
-| \_free.c           | Contains a custom memory deallocation function                                                                     |
 | free_env.c         | Contains the function that frees environment variable arrays                                                       |
 
 ## **Installation and Usage**
