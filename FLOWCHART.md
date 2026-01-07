@@ -1,9 +1,5 @@
 ```mermaid
----
-config:
-  layout: elk
----
-flowchart TB
+flowchart LR
     Start(["Start"]) --> def1["def1"]
     def1 --> def2["SIGINT = handle_sigint
     SIGTSTP = SIG_IGN"]
