@@ -10,7 +10,7 @@
  */
 int main(int ac, char **av, char **envp)
 {
-	char *usr_entry = NULL, *path_exec = NULL, **token = NULL, **path_env = NULL;
+	char *user_input = NULL, *path_exec = NULL, **token = NULL, **path_env = NULL;
 	size_t size_usr_entry = 0;
 	int count = 1, exit_code = 0, end;
 
@@ -19,10 +19,10 @@ int main(int ac, char **av, char **envp)
 
 	for (end = 0 ; end == 0 ; count++)
 	{
-		if (prompt(&usr_entry, &size_usr_entry, envp) == -1)
+		if (prompt(&user_input, &size_usr_entry, envp) == -1)
 			break;
 
-		token = split_arg(usr_entry, ac);
+		token = split_arg(user_input, ac);
 		if (token[0])
 		{
 			path_env = env("PATH", envp);
@@ -42,6 +42,6 @@ int main(int ac, char **av, char **envp)
 		}
 		free(token);
 	}
-	free(usr_entry);
+	free(user_input);
 	exit(exit_code);
 }
