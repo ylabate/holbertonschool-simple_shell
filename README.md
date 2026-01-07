@@ -58,7 +58,8 @@ Here is the list of allowed functions and system calls+:
 - wait4 (man 2 wait4)
 - write (man 2 write)
 
-It's one possible solution among others, but here's the one we came up with by creating our flowchart.
+It's one possible solution among others, but here's the one we came up with by creating our [Flowchart](./FLOWCHART.md).
+
 
 ## **Objectives**
 
@@ -162,8 +163,6 @@ hsh$ exit 0
 $
 ```
 
-## **Flowchart**
-[Flowchart](./FLOWCHART.md)
 
 ## **Thanks**
 
