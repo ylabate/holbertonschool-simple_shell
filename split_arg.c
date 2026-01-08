@@ -21,6 +21,5 @@ char **split_arg(char *usr_entry)
 	token[i] = strtok(usr_entry, " \t");
 	while (token[i++])
 		token[i] = strtok(NULL, " \t");
-	token[i] = NULL;
 	return (token);
 }
