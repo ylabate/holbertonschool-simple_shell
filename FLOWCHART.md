@@ -3,17 +3,17 @@ flowchart TB
     Start(["Start"]) --> def2["SIGINT = handle_sigint
     SIGTSTP = SIG_IGN"]
     def2 --> main_loop{"end == 0"}
-    main_loop -- true --> prompt[/"print prompt with cwd and user"/]
+    main_loop -- true --> prompt[/"print prompt with cwd and username"/]
     main_loop -- false --> exit[/"exit with exit code"/]
     exit --> End(["End"])
-    prompt --> getline["stdin to user input"]
-    getline --> tokenize["tokenize user input"]
-    tokenize --> search_path{"if token[0] is in path"}
+    prompt --> getline["stdin to a temp variable"]
+    getline --> tokenize["tokenize the variable"]
+    tokenize --> search_path{"if first token is in path"}
     search_path -- true --> path_exec1["path_exec = path of the command"]
     path_exec1 --> builtin{"if is built-in command"}
     search_path -- false --> path_exec2["path_exec = NULL"]
     path_exec2 --> builtin
-    builtin -- true --> if_exit@{ label: "if it's exit" }
+    builtin -- true --> if_exit{"if it's exit"}
     if_exit -- true --> exit
     if_exit -- false --> exec_builtin["execute the builtin command"]
     exec_builtin --> main_loop
