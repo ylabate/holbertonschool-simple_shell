@@ -13,7 +13,7 @@ int main(int ac, char **av, char **envp)
 	char *user_input = NULL, *path_exec = NULL, **token = NULL, **path_env = NULL;
 	size_t size_usr_entry = 0;
 	int count = 1, exit_code = 0, end;
-
+	(void)ac;
 	signal(SIGINT, handle_sigint);
 	signal(SIGTSTP, SIG_IGN);
 
@@ -22,7 +22,7 @@ int main(int ac, char **av, char **envp)
 		if (prompt(&user_input, &size_usr_entry, envp) == -1)
 			break;
 
-		token = split_arg(user_input, ac);
+		token = split_arg(user_input);
 		if (token[0])
 		{
 			path_env = env("PATH", envp);
