@@ -7,7 +7,7 @@
  *
  * Return: 0 if command is a local command, 256 otherwise
  */
-int built_in_command(char **token, char **envp)
+int built_in_command(char **token, char **envp, int count, char **av)
 {
 	int i = 0;
 	function_t func[] = {
@@ -18,7 +18,7 @@ int built_in_command(char **token, char **envp)
 	while (func[i].name)
 	{
 		if (strcmp(token[0], func[i].name) == 0)
-			return (func[i].function(envp, token));
+			return (func[i].function(envp, token, count, av));
 		i++;
 	}
 	return (256);

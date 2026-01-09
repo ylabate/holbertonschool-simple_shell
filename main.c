@@ -29,7 +29,7 @@ int main(int ac, char **av, char **envp)
 			path_exec = search_path(token[0], path_env);
 			if (__exit(&exit_code, &end, token, count, av))
 			;
-			else if (built_in_command(token, envp) != 256)
+			else if (built_in_command(token, envp, count, av) != 256)
 			;
 			else if (path_exec)
 				exit_code = start_subprocess(path_exec, token, envp);

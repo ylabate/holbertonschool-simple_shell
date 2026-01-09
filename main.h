@@ -26,8 +26,13 @@
 typedef struct command
 {
 	char *name;
-	int (*function)(char **, char **);
+	int (*function)(char **, char **, int count, char **av);
 } function_t;
+
+int shell_env(char **envp, char **arguments, int count, char **av);
+int shell_cd(char **envp, char **arguments, int count, char **av);
+
+int __exit(int *exit_code, int *end, char **token, int count, char **av);
 
 char *search_path(char *buffer, char **PATH);
 int exec_subprocess(char *path, char **token, char **envp);
@@ -38,10 +43,7 @@ char **env(char *var_name, char **envp);
 void set_env(char *key, char *content, char **envp);
 void handle_sigint(int sig);
 int prompt(char **usr_entry, size_t *size_usr_entry, char **envp);
-int shell_env(char **envp, char **arguments);
-int shell_cd(char **envp, char **arguments);
 int _atoi(char *s);
-int built_in_command(char **token, char **envp);
-int __exit(int *exit_code, int *end, char **token, int count, char **av);
+int built_in_command(char **token, char **envp, int count, char **av);
 
 #endif /*__MAIN_H__*/

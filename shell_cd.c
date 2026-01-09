@@ -1,6 +1,6 @@
 #include "main.h"
 
-int shell_cd(char **envp, char **arguments)
+int shell_cd(char **envp, char **arguments, int count, char **av)
 {
 	char **home = env("HOME", envp);
 	char **oldpwd = env("OLDPWD", envp);
@@ -39,7 +39,7 @@ int shell_cd(char **envp, char **arguments)
 		}
 	}
 	if (exit_code)
-		fprintf(stderr, "cd: directory don't existe\n");
+		fprintf(stderr, "%s: %d: cd: can't cd to %s\n", av[0], count, arguments[0]);
 	if (home)
 		free_env(home);
 	if (home)

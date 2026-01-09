@@ -7,11 +7,12 @@
  * Return: 0 on success
  */
 
-int shell_env(char **envp, char **arguments)
+int shell_env(char **envp, char **arguments, int count, char **av)
 {
 	char **exit_env;
 	int i = 0;
-
+	(void)count;
+	(void)av;
 	if (arguments && arguments[1] && arguments[2])
 	{
 		fprintf(stderr, "env: too many arguments\n");
