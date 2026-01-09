@@ -39,7 +39,7 @@ int shell_cd(char **envp, char **arguments, int count, char **av)
 		}
 	}
 	if (exit_code)
-		fprintf(stderr, "%s: %d: cd: can't cd to %s\n", av[0], count, arguments[0]);
+		fprintf(stderr, "%s: %d: cd: can't cd to %s\n", av[0], count, arguments[1]);
 	if (home)
 		free_env(home);
 	if (home)
