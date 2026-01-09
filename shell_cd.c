@@ -8,16 +8,18 @@ int shell_cd(char **envp, char **arguments)
 
 	if (arguments)
 	{
-		if (arguments[1] && arguments[2])
-		{
-			fprintf(stderr, "cd: too many arguments\n");
-			return (1);
-		}
-
 		if (arguments[1])
 		{
+			if (arguments[2])
+			{
+				fprintf(stderr, "cd: too many arguments\n");
+				return (1);
+			}
 			if (strcmp(arguments[1], "-") == 0)
+			{
 				exit_code = chdir(oldpwd[0]);
+				set_env("PWD", oldpwd[0], envp);
+			}
 			else
 				exit_code = chdir(arguments[1]);
 		}
@@ -28,5 +30,7 @@ int shell_cd(char **envp, char **arguments)
 	}
 	if (exit_code)
 		fprintf(stderr, "cd: directory don't existe\n");
+	free_env(home);
+	free_env(oldpwd);
 	return (exit_code);
 }

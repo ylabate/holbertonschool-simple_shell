@@ -35,6 +35,7 @@ char **split_arg(char *arg);
 int start_subprocess(char *path_exec, char **token, char **envp);
 void free_env(char **env);
 char **env(char *var_name, char **envp);
+void set_env(char *key, char *content, char **envp);
 void handle_sigint(int sig);
 int prompt(char **usr_entry, size_t *size_usr_entry, char **envp);
 int shell_env(char **envp, char **arguments);
