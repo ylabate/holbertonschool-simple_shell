@@ -18,19 +18,31 @@ int shell_cd(char **envp, char **arguments)
 			if (strcmp(arguments[1], "-") == 0)
 			{
 				exit_code = chdir(oldpwd[0]);
-				set_env("PWD", oldpwd[0], envp);
+				if (!exit_code)
+					set_env("PWD", oldpwd[0], envp);
 			}
 			else
+			{
 				exit_code = chdir(arguments[1]);
+				if (!exit_code)
+					set_env("PWD", arguments[1], envp);
+			}
 		}
 		else
 		{
-			chdir(home[0]);
+			if (home[0])
+			{
+				chdir(home[0]);
+				if (!exit_code)
+					set_env("PWD", home[0], envp);
+			}
 		}
 	}
 	if (exit_code)
 		fprintf(stderr, "cd: directory don't existe\n");
-	free_env(home);
-	free_env(oldpwd);
+	if (home)
+		free_env(home);
+	if (home)
+		free_env(oldpwd);
 	return (exit_code);
 }

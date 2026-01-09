@@ -2,11 +2,12 @@
 
 void set_env(char *key, char *content, char **envp)
 {
-	char *new_env = malloc(strlen(key) + strlen(content) + 2);
+	char *new_env = NULL;
 	char *envp_cpy = NULL, *key_cpy = NULL;
 	int i;
 	char **rm_env;
 
+	new_env = malloc(strlen(key) + strlen(content) + 2);
 	if (!new_env)
 		exit(EXIT_FAILURE);
 	for (i = 0; envp[i]; i++)

@@ -10,12 +10,12 @@
 char **env(char *var_name, char **envp)
 {
 	int i = 0;
-	char **result = malloc(sizeof(char *) * 50);
+	char **result = malloc(sizeof(char *) * 100);
 	char *env_copy, *key, *temp;
 
 	if (!result)
 		exit(EXIT_FAILURE);
-	while (i < 50)
+	while (i < 99)
 	{
 		result[i] = NULL;
 		i++;
@@ -42,7 +42,7 @@ char **env(char *var_name, char **envp)
 			result[i] = strdup(envp[i]);
 		}
 		i++;
-		if (i >= 50)
+		if (i >= 99)
 			break;
 	}
 	result[i] = NULL;
