@@ -11,6 +11,7 @@
 int main(int ac, char **av, char **envp)
 {
 	char *user_input = NULL, *path_exec = NULL, **token = NULL, **path_env = NULL;
+	char **local_envp = env(NULL, envp);
 	size_t size_usr_entry = 0;
 	int count = 1, exit_code = 0, end;
 	(void)ac;
@@ -19,20 +20,20 @@ int main(int ac, char **av, char **envp)
 
 	for (end = 0 ; end == 0 ; count++)
 	{
-		if (prompt(&user_input, &size_usr_entry, envp) == -1)
+		if (prompt(&user_input, &size_usr_entry, local_envp) == -1)
 			break;
 
 		token = split_arg(user_input);
 		if (token[0])
 		{
-			path_env = env("PATH", envp);
+			path_env = env("PATH", local_envp);
 			path_exec = search_path(token[0], path_env);
 			if (__exit(&exit_code, &end, token, count, av))
 			;
-			else if (built_in_command(token, envp, count, av) != 256)
+			else if (built_in_command(token, local_envp, count, av) != 256)
 			;
 			else if (path_exec)
-				exit_code = start_subprocess(path_exec, token, envp);
+				exit_code = start_subprocess(path_exec, token, local_envp);
 			else
 			{
 				fprintf(stderr, "%s: %d: %s: not found\n", av[0], count, token[0]);
@@ -42,6 +43,7 @@ int main(int ac, char **av, char **envp)
 		}
 		free(token);
 	}
+	free_env(local_envp);
 	free(user_input);
 	exit(exit_code);
 }

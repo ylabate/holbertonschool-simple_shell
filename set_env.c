@@ -5,7 +5,7 @@ void set_env(char *key, char *content, char **envp)
 	char *new_env = NULL;
 	char *envp_cpy = NULL, *key_cpy = NULL;
 	int i;
-	char **rm_env;
+
 
 	new_env = malloc(strlen(key) + strlen(content) + 2);
 	if (!new_env)
@@ -20,16 +20,15 @@ void set_env(char *key, char *content, char **envp)
 		if (strcmp(key_cpy, key) == 0)
 		{
 			sprintf(new_env, "%s=%s", key, content);
+			free(envp_cpy);
 			break;
 		}
 		free(envp_cpy);
 	}
-	rm_env = &envp[i];
+	free(envp[i]);
 	envp[i] = malloc(strlen(new_env) + 1);
 	strcpy(envp[i], new_env);
 
-	free(*rm_env);
 	free(new_env);
-	free(envp_cpy);
 }
 
