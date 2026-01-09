@@ -11,14 +11,14 @@ int built_in_command(char **token, char **envp)
 {
 	int i = 0;
 	function_t func[] = {
-		{"env", shell_env, NULL},
-		{NULL, NULL, NULL}};
+		{"env", shell_env},
+		{"cd", shell_cd},
+		{NULL, NULL}};
 
-	func[0].arguments = envp;
 	while (func[i].name)
 	{
 		if (strcmp(token[0], func[i].name) == 0)
-			return (func[i].function(func[i].arguments));
+			return (func[i].function(envp, token));
 		i++;
 	}
 	return (256);
