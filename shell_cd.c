@@ -17,9 +17,12 @@ int shell_cd(char **envp, char **arguments, int count, char **av)
 			}
 			if (strcmp(arguments[1], "-") == 0)
 			{
-				exit_code = chdir(oldpwd[0]);
-				if (!exit_code)
-					set_env("PWD", oldpwd[0], envp);
+				if (oldpwd[0])
+				{
+					exit_code = chdir(oldpwd[0]);
+					if (!exit_code)
+						set_env("PWD", oldpwd[0], envp);
+				}
 			}
 			else
 			{
