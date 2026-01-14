@@ -10,8 +10,10 @@
 void update_pwd(char *oldpwd, char **envp)
 {
 	char buf[4096];
+	int i;
 
-	buf[0] = '\0';
+	for (i = 0; i < 4096; i++)
+		buf[i] = '\0';
 	if (getcwd(buf, sizeof(buf)))
 	{
 		set_env("PWD", buf, envp);
