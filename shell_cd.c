@@ -22,17 +22,17 @@ int shell_cd(char **envp, char **arguments, int count, char **av)
 	{
 		if (strcmp(arguments[1], "-") == 0)
 		{
-			if (oldpwd[0])
+			if (oldpwd && oldpwd[0])
 			{
 				exit_code = chdir(oldpwd[0]);
-				if (!exit_code)
+				if (!exit_code && pwd && pwd[0])
 					update_pwd(pwd[0], envp);
 			}
 		}
 		else
 		{
 			exit_code = chdir(arguments[1]);
-			if (!exit_code)
+			if (!exit_code && pwd && pwd[0])
 				update_pwd(pwd[0], envp);
 		}
 	}
@@ -41,7 +41,7 @@ int shell_cd(char **envp, char **arguments, int count, char **av)
 		if (home && home[0])
 		{
 			exit_code = chdir(home[0]);
-			if (!exit_code)
+			if (!exit_code && pwd && pwd[0])
 				update_pwd(pwd[0], envp);
 		}
 	}
