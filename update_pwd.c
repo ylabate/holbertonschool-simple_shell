@@ -15,6 +15,7 @@ void update_pwd(char *oldpwd, char **envp)
 	if (getcwd(buf, sizeof(buf)))
 	{
 		set_env("PWD", buf, envp);
-		set_env("OLDPWD", oldpwd, envp);
+		if (oldpwd)
+			set_env("OLDPWD", oldpwd, envp);
 	}
 }
