@@ -1,11 +1,18 @@
 #include "main.h"
 
+/**
+ * set_env - sets an environment variable
+ * @key: the name of the environment variable
+ * @content: the value of the environment variable
+ * @envp: array of environment variables
+ *
+ * Return: void
+ */
 void set_env(char *key, char *content, char **envp)
 {
 	char *new_env = NULL;
 	char *envp_cpy = NULL, *key_cpy = NULL;
 	int i;
-
 
 	new_env = malloc(strlen(key) + strlen(content) + 2);
 	if (!new_env)
@@ -31,4 +38,3 @@ void set_env(char *key, char *content, char **envp)
 
 	free(new_env);
 }
-

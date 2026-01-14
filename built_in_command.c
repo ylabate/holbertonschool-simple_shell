@@ -4,6 +4,8 @@
  * built_in_command - checks if the command is a local command
  * @token: array of command and its arguments
  * @envp: environment variables
+ * @count: argument count
+ * @av: argument vector
  *
  * Return: 0 if command is a local command, 256 otherwise
  */

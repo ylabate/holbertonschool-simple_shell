@@ -1,11 +1,11 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-#define BOLD          "\033[1m"
-#define COLOR_GREEN  "\033[38;2;46;204;113m"
-#define COLOR_RED   "\033[38;2;255;0;0m"
-#define COLOR_RESET  "\033[0m"
-#define COLOR_GOLD	 "\033[38;5;220m"
+#define BOLD "\033[1m"
+#define COLOR_GREEN "\033[38;2;46;204;113m"
+#define COLOR_RED "\033[38;2;255;0;0m"
+#define COLOR_RESET "\033[0m"
+#define COLOR_GOLD "\033[38;5;220m"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,7 +21,6 @@
  * struct command - Structure for command functions
  * @name: The command name
  * @function: The function pointer to execute the command
- * @arguments: The command arguments
  */
 typedef struct command
 {
@@ -45,5 +44,6 @@ void handle_sigint(int sig);
 int prompt(char **usr_entry, size_t *size_usr_entry, char **envp);
 int _atoi(char *s);
 int built_in_command(char **token, char **envp, int count, char **av);
+void update_pwd(char *oldpwd, char **envp);
 
 #endif /*__MAIN_H__*/
